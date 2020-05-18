@@ -1,0 +1,47 @@
+/**
+ * Checks if a given number is a Disarium Number or not
+ *
+ * @author Aadi Rave
+ * @version 1.0
+ * @date 11.05.2020
+ */
+
+import java.util.Scanner; // importing the Scanner class for input
+
+public class DisariumNumber {
+    public static long calculateLength(long n){  // calculating the length of the number to reverse it
+        long length = 0;  
+        
+        while(n != 0) {  
+            length++; 
+            n /= 10;  
+        }  
+        
+        return length;  
+    }  
+      
+    public static void main(String[] args) {  
+        Scanner sc = new Scanner(System.in); // creating a Scanner object
+        long num, reversedNumber = 0, remainder = 0, bufferedNum;  // number entered, reversed number, remainder and temporary variable to store the number entered
+        
+        System.out.println("Enter the number to check: ");
+        num = sc.nextLong(); // getting the number
+        
+        long length = calculateLength(num);  // getting length
+        bufferedNum = num;  
+          
+        while(num > 0) {  
+            remainder = num % 10;  
+            reversedNumber += Math.pow(remainder, length);  // calculating the reversed number
+            num /=10;  
+            length--;  
+        }  
+          
+        if(reversedNumber == bufferedNum)  // checking if it is a disarium number
+            System.out.println(bufferedNum + " is a disarium number");  
+        else  
+            System.out.println(bufferedNum + " is not a disarium number");
+            
+        sc.close();
+    }  
+}
